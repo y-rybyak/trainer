@@ -1,2 +1,0 @@
-# trainer
-English dictionary trainer
