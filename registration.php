@@ -2,8 +2,7 @@
 $title = "Registration";
 include "header.php";
 if (!empty($_POST)) {
-    foreach($_POST as $key => $value)
-    {
+    foreach ($_POST as $key => $value) {
         $$key = $value;
     }
     if ($password1 != $password2) {
@@ -26,13 +25,13 @@ if (!empty($_POST)) {
         if ($sth->execute([
             ':login' => $login,
             ':password' => md5($password1)
-        ])) {
+        ])
+        ) {
             $_SESSION["userId"] = $dbh->lastInsertId();
 
             header('Location: /settings.php', true, 303);
             exit;
-        }
-        else {
+        } else {
             $text = '<p class="text-danger">This login is already in use.</p>';
         }
     }
@@ -43,7 +42,7 @@ if (!empty($_POST)) {
     <div class="col-md-4">
         <div class="centered-text">
             <h4>Already have an account? Please <a href="/login.php">login.</a></h4>
-            <?=(isset($text))?'<div class="alert alert-danger" role="alert">'.$text.'</div>':''?>
+            <?= (isset($text)) ? '<div class="alert alert-danger" role="alert">' . $text . '</div>' : '' ?>
         </div>
         <form name="loginForm" enctype="multipart/form-data" method="POST" action="registration.php">
 
@@ -51,7 +50,7 @@ if (!empty($_POST)) {
 
                 <label for="login">Login</label>
                 <input type="text" class="form-control" placeholder="Enter your login" id="login"
-                       name="login" autocomplete="off" value="<?=(isset($login))?$login:''?>">
+                       name="login" autocomplete="off" value="<?= (isset($login)) ? $login : '' ?>">
             </div>
             <div class="form-group">
                 <label for="password1">Password</label>

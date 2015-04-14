@@ -16,16 +16,19 @@ $result = array_reverse($result);
 <div class="row">
     <div class="col-md-4">
         <h3>Add new word to your dictionary</h3>
+
         <form class="form-inline" name="new" method="POST" action="settings.php">
             <input type="text" class="form-control" name="english" id="english" autocomplete="off"
                    placeholder="English word">
             <input type="text" class="form-control" name="russian" id="russian" autocomplete="off"
                    placeholder="Russian word">
             <button type="submit" class="btn btn-default">Add</button>
-        </form><br />
+        </form>
+        <br/>
     </div>
     <div class="col-md-4">
         <h3>Select words to study</h3>
+
         <form name="dictionary" method="POST" action="trainer.php">
             <table class="table table-striped">
                 <tr>

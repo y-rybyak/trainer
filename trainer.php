@@ -7,7 +7,6 @@ if (!empty($_POST["dictionary"])) {
     print "<pre>";
     var_dump($_POST["dictionary"]);
     print "</pre>";
-}
-else {
+} else {
     print "empty";
 }
