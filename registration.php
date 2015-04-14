@@ -29,7 +29,7 @@ if (!empty($_POST)) {
         ])) {
             $_SESSION["userId"] = $dbh->lastInsertId();
 
-            header('Location: /main.php', true, 303);
+            header('Location: /settings.php', true, 303);
             exit;
         }
         else {

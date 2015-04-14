@@ -13,7 +13,7 @@ if (!empty($_POST)) {
     $_SESSION["userId"] = $result["intId"];
     if ($result) {
         if ($result["varPasswordHash"] === $passwordHash) {
-            header('Location: /main.php', true, 303);
+            header('Location: /settings.php', true, 303);
             exit;
         } else {
             $text = "Pair login/password does not exist";
@@ -44,7 +44,7 @@ if (!empty($_POST)) {
             </div>
             <div class="form-group">
                 <button type="submit" class="btn btn-default pull-left" id="submitLogin"
-                        name="submitLogin">Sign up
+                        name="submitLogin">Sign in
                 </button>
             </div>
         </form>
