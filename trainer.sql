@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 13, 2015 at 06:12 PM
+-- Generation Time: Apr 14, 2015 at 06:11 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.7
 
@@ -53,19 +53,22 @@ CREATE TABLE IF NOT EXISTS `words` (
   `intUserId` int(11) NOT NULL,
   `english` varchar(256) NOT NULL,
   `russian` varchar(256) NOT NULL,
-  `german` varchar(256) NOT NULL,
-  `ukrainian` varchar(256) NOT NULL,
   PRIMARY KEY (`intId`),
   KEY `intUserId` (`intUserId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `words`
 --
 
-INSERT INTO `words` (`intId`, `intUserId`, `english`, `russian`, `german`, `ukrainian`) VALUES
-(1, 1, 'mother', 'мать', 'die mutter', 'мати'),
-(2, 1, 'father', 'отец', 'der vatter', 'тато');
+INSERT INTO `words` (`intId`, `intUserId`, `english`, `russian`) VALUES
+(1, 1, 'dog', 'собака'),
+(2, 1, 'cat', 'кот'),
+(3, 1, 'car', 'автомобиль'),
+(4, 1, 'sun', 'солнце'),
+(5, 1, 'tree', 'дерево'),
+(6, 1, 'forest', 'лес'),
+(7, 1, 'stone', 'камень');
 
 --
 -- Constraints for dumped tables
