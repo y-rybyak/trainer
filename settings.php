@@ -43,7 +43,9 @@ $result = array_reverse($result);
                     print "<tr>";
                     print "<td><input type=checkbox name=dictionary[] value=$word checked></td>";
                     print "<td>" . $val["english"] . "</td><td>" . $val["russian"] . "</td>";
-                    print '<td><span class="glyphicon glyphicon-trash"></td>';
+                    print "<td>" . '<a href="?delete=' . $val["english"] . '" title="Delete">';
+                    print '<span class="glyphicon glyphicon-trash">';
+                    print "</a></td>";
                     print "</tr>";
                 }
                 ?>
@@ -66,6 +68,12 @@ $result = array_reverse($result);
                 ':russian' => $russian
             ]);
             header('Location: /settings.php', true, 303);
+        }
+        if (!empty($_GET["delete"])) {
+            $wordId = $_GET["delete"];
+            $sth = $dbh->prepare("DELETE FROM words WHERE english = :wordId");
+            $sth->execute([':wordId' => $wordId]);
+            header("Location: /settings.php", true, 303);
         }
         ?>
 
