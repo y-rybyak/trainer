@@ -14,6 +14,7 @@ $result = array_reverse($result);
 ?>
 
 <div class="row">
+    <div class="col-md-4"></div>
     <div class="col-md-4">
         <h3>Add new word to your dictionary</h3>
 
@@ -25,8 +26,7 @@ $result = array_reverse($result);
             <button type="submit" class="btn btn-default">Add</button>
         </form>
         <br/>
-    </div>
-    <div class="col-md-4">
+
         <h3>Select words to study</h3>
 
         <form name="dictionary" method="POST" action="trainer.php">
