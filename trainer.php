@@ -25,7 +25,9 @@ if (!empty($_POST["dictionary"])) {
             }
         }?>
     </div>
-    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h3><a href="settings.php">Settings</a></h3>
+    </div>
 </div>
 </div>
 </body>

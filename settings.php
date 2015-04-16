@@ -71,8 +71,9 @@ $result = array_reverse($result);
         }
         if (!empty($_GET["delete"])) {
             $wordId = $_GET["delete"];
-            $sth = $dbh->prepare("DELETE FROM words WHERE english = :wordId");
-            $sth->execute([':wordId' => $wordId]);
+            $sth = $dbh->prepare("DELETE FROM words WHERE english = :wordId AND intUserId = :id");
+            $sth->execute([':wordId' => $wordId,
+            ':id' => $id]);
             header("Location: /settings.php", true, 303);
         }
         ?>
