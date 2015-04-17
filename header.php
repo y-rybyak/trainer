@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
     <link href="/css/bootstrap.css" rel="stylesheet">
     <title><?= $title ?></title>
 </head>
@@ -11,7 +12,7 @@
 <div class="container-fluid">
     <div class="row">
         <div class="col-md-12" align="center">
-            <h1><?= $title ?></h1>
+            <h1><?=$title?></h1>
             <hr>
         </div>
     </div>
