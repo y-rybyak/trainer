@@ -39,11 +39,12 @@ $result = array_reverse($result);
                 </tr>
                 <?php
                 foreach ($result as $val) {
-                    $word = $val["english"];
+                    $ruword = $val["russian"];
+                    $enword = $val["english"];
                     print "<tr>";
-                    print "<td><input type=checkbox name=dictionary[] value=$word checked></td>";
-                    print "<td>" . $val["english"] . "</td><td>" . $val["russian"] . "</td>";
-                    print "<td>" . '<a href="?delete=' . $val["english"] . '" title="Delete">';
+                    print "<td><input type=checkbox name=dictionary[] value=$enword checked></td>";
+                    print "<td>" . $enword . "</td><td>" . $ruword . "</td>";
+                    print "<td>" . '<a href="?delete=' . $enword . '" title="Delete">';
                     print '<span class="glyphicon glyphicon-trash">';
                     print "</a></td>";
                     print "</tr>";
