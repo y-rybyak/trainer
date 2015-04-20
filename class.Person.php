@@ -13,7 +13,7 @@ class Person {
     }
 
     public function setID($id) {
-        $this->_name = $id;
+        $this->_id = $id;
     }
 
     public function getName() {
