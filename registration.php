@@ -1,6 +1,7 @@
 <?php
 $title = "Registration";
 include "header.php";
+require_once('class.Person.php');
 if (!empty($_POST)) {
     foreach ($_POST as $key => $value) {
         $$key = $value;
@@ -27,7 +28,11 @@ if (!empty($_POST)) {
             ':password' => md5($password1)
         ])
         ) {
-            $_SESSION["userId"] = $dbh->lastInsertId();
+            $person = new Person();
+            $person->setName($login);
+            $person->setPassword(md5($password1));
+            $person->setID($dbh->lastInsertId());
+            $_SESSION["userId"] = $person->getID();
 
             header('Location: /settings.php', true, 303);
             exit;
