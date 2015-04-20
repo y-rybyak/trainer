@@ -2,14 +2,31 @@
 $title = "Trainer";
 include "header.php";
 session_start();
-if (!empty($_POST["dictionary"])) {
+if (isset($_POST["dictionary"])) {
     $dbh = new PDO('mysql:host=localhost; dbname=trainer; charset=UTF8', 'root', '6710omne8864');
-    foreach ($_POST["dictionary"] as $word) {
-        $sth = $dbh->prepare("SELECT russian FROM words WHERE english = :word");
-        $sth->execute([':word' => $word]);
-        $_SESSION["dictionary"][$word] = $sth->fetchAll()[0][0];
+    $sql = "TRUNCATE TABLE trainer.dictionary";
+    $truncate = $dbh->prepare($sql);
+    $truncate->execute();
+
+    $dbh->query("SET NAMES 'utf8';");
+    foreach ($_POST["dictionary"] as $key => $english) {
+        $sth = $dbh->prepare("SELECT russian FROM trainer.words WHERE english = :english");
+        $sth->execute([':english' => $english]);
+        $dictionary[$english] = $sth->fetch()[0];
     }
 }
+
+ foreach ($dictionary as $english => $russian) {
+     $sql = "INSERT INTO trainer.dictionary(intUserId, english, russian)
+                         VALUES(:id, :english, :russian)";
+     $sth = $dbh->prepare($sql);
+     $sth->execute([
+         ':id' => $_SESSION["userId"],
+         ':english' => $english,
+         ':russian' => $russian
+     ]);
+ }
+
 ?>
 
 <div class="row">
@@ -18,23 +35,11 @@ if (!empty($_POST["dictionary"])) {
 
         <form class="form-group" name="play" method="POST" action="trainer.php">
             <div class="form-group">
-                <label for="inputWord">
-                    <?php
-                    $word = array_rand($_SESSION["dictionary"], 1);
-                    print ucfirst($word);
-                    
-                    ?>
-                </label>
+                <label for="inputWord">Word</label>
                 <input autofocus type="text" class="form-control" id="inputWord" autocomplete="off" name="inputWord">
             </div>
             <button type="submit" class="btn btn-default">Submit</button>
         </form>
-
-        <?php
-            print $_POST["inputWord"];
-            print $_SESSION["dictionary"][$word];
-        ?>
-
     </div>
     <div class="col-md-4">
         <h3><a href="settings.php">Settings</a></h3>

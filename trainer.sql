@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 14, 2015 at 06:11 PM
+-- Generation Time: Apr 20, 2015 at 11:01 PM
 -- Server version: 5.5.41-0ubuntu0.14.04.1
 -- PHP Version: 5.5.9-1ubuntu4.7
 
@@ -19,6 +19,21 @@ SET time_zone = "+00:00";
 --
 -- Database: `trainer`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `dictionary`
+--
+
+CREATE TABLE IF NOT EXISTS `dictionary` (
+  `intId` int(11) NOT NULL AUTO_INCREMENT,
+  `intUserId` int(11) NOT NULL,
+  `english` varchar(255) NOT NULL,
+  `russian` varchar(255) NOT NULL,
+  PRIMARY KEY (`intId`),
+  KEY `intUserId` (`intUserId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
 
 -- --------------------------------------------------------
 
@@ -55,24 +70,32 @@ CREATE TABLE IF NOT EXISTS `words` (
   `russian` varchar(256) NOT NULL,
   PRIMARY KEY (`intId`),
   KEY `intUserId` (`intUserId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
 
 --
 -- Dumping data for table `words`
 --
 
 INSERT INTO `words` (`intId`, `intUserId`, `english`, `russian`) VALUES
-(1, 1, 'dog', 'собака'),
+(1, 1, 'shovel', 'лопата'),
 (2, 1, 'cat', 'кот'),
 (3, 1, 'car', 'автомобиль'),
 (4, 1, 'sun', 'солнце'),
 (5, 1, 'tree', 'дерево'),
 (6, 1, 'forest', 'лес'),
-(7, 1, 'stone', 'камень');
+(7, 1, 'stone', 'камень'),
+(8, 1, 'grass', 'трава'),
+(9, 1, 'sword', 'меч');
 
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `dictionary`
+--
+ALTER TABLE `dictionary`
+  ADD CONSTRAINT `dictionary_ibfk_1` FOREIGN KEY (`intUserId`) REFERENCES `user` (`intId`);
 
 --
 -- Constraints for table `words`
