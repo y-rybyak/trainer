@@ -1,18 +1,23 @@
 <?php
 $title = "Login";
 include "header.php";
+require_once('class.Person.php');
 session_start();
 $text = "";
 if (!empty($_POST)) {
-    $login = $_POST['login'];
-    $passwordHash = md5($_POST['password']);
+    $person = new Person();
+    $person->setName($_POST['login']);
+    $person->setPassword(md5($_POST['password']));
+    //$login = $_POST['login'];
+    //$passwordHash = md5($_POST['password']);
     $dbh = new PDO('mysql:host=localhost; dbname=trainer; charset=UTF8', 'root', '6710omne8864');
     $sth = $dbh->prepare("SELECT intId, varPasswordHash FROM user WHERE varLogin = :login");
-    $sth->execute([':login' => $login]);
+    $sth->execute([':login' => $person->getName()]);
     $result = $sth->fetch(PDO::FETCH_ASSOC);
-    $_SESSION["userId"] = $result["intId"];
+    $person->setID($result["intId"]);
+    $_SESSION["userId"] = $person->getID();
     if ($result) {
-        if ($result["varPasswordHash"] === $passwordHash) {
+        if ($result["varPasswordHash"] === $person->getPassword()) {
             header('Location: /settings.php', true, 303);
             exit;
         } else {

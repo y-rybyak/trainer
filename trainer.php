@@ -14,18 +14,25 @@ if (isset($_POST["dictionary"])) {
         $sth->execute([':english' => $english]);
         $dictionary[$english] = $sth->fetch()[0];
     }
+
+
+    foreach ($dictionary as $english => $russian) {
+        $sql = "INSERT INTO trainer.dictionary(intUserId, english, russian)
+                         VALUES(:id, :english, :russian)";
+        $sth = $dbh->prepare($sql);
+        $sth->execute([
+            ':id' => $_SESSION["userId"],
+            ':english' => $english,
+            ':russian' => $russian
+        ]);
+    }
 }
 
- foreach ($dictionary as $english => $russian) {
-     $sql = "INSERT INTO trainer.dictionary(intUserId, english, russian)
-                         VALUES(:id, :english, :russian)";
-     $sth = $dbh->prepare($sql);
-     $sth->execute([
-         ':id' => $_SESSION["userId"],
-         ':english' => $english,
-         ':russian' => $russian
-     ]);
- }
+if (isset($_POST["inputWord"])) {
+    print $_POST["inputWord"];
+
+}
+
 
 ?>
 
