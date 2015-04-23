@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 20, 2015 at 11:01 PM
--- Server version: 5.5.41-0ubuntu0.14.04.1
--- PHP Version: 5.5.9-1ubuntu4.7
+-- Generation Time: Apr 23, 2015 at 10:26 PM
+-- Server version: 5.5.43-0ubuntu0.14.04.1
+-- PHP Version: 5.5.9-1ubuntu4.9
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -33,7 +33,17 @@ CREATE TABLE IF NOT EXISTS `dictionary` (
   `russian` varchar(255) NOT NULL,
   PRIMARY KEY (`intId`),
   KEY `intUserId` (`intUserId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `guess`
+--
+
+CREATE TABLE IF NOT EXISTS `guess` (
+  `varGuess` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
 
@@ -70,22 +80,16 @@ CREATE TABLE IF NOT EXISTS `words` (
   `russian` varchar(256) NOT NULL,
   PRIMARY KEY (`intId`),
   KEY `intUserId` (`intUserId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=10 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=4 ;
 
 --
 -- Dumping data for table `words`
 --
 
 INSERT INTO `words` (`intId`, `intUserId`, `english`, `russian`) VALUES
-(1, 1, 'shovel', 'лопата'),
-(2, 1, 'cat', 'кот'),
-(3, 1, 'car', 'автомобиль'),
-(4, 1, 'sun', 'солнце'),
-(5, 1, 'tree', 'дерево'),
-(6, 1, 'forest', 'лес'),
-(7, 1, 'stone', 'камень'),
-(8, 1, 'grass', 'трава'),
-(9, 1, 'sword', 'меч');
+(1, 1, 'cat', 'кот'),
+(2, 1, 'forest', 'лес'),
+(3, 1, 'sword', 'меч');
 
 --
 -- Constraints for dumped tables
