@@ -7,6 +7,7 @@ $dbh = new PDO('mysql:host=localhost; dbname=trainer; charset=UTF8', 'root', '67
 if (isset($_POST["dictionary"])) {
     $_SESSION["right"] = 0;
     $_SESSION["wrong"] = 0;
+    $_SESSION["total"] = 0;
 
     $sql = "TRUNCATE TABLE trainer.dictionary";
     $truncate = $dbh->prepare($sql);
@@ -35,21 +36,18 @@ if (isset($_GET["guess"])) {
     $sth = $dbh->prepare("SELECT * FROM trainer.guess");
     $sth->execute();
     $oldword = $sth->fetch()[0];
-    if ($oldword == $_GET["guess"]) {
+    if ($oldword == mb_strtolower($_GET["guess"], 'UTF-8')) {
         $_SESSION["right"] += 1;
+        $_SESSION["total"] += 1;
         $sth = $dbh->prepare("DELETE FROM trainer.dictionary WHERE russian = :russian");
         $sth->execute([':russian' => $oldword]);
-    }
-    else {
+    } else {
         $_SESSION["wrong"] += 1;
+        $_SESSION["total"] += 1;
     }
 
 }
 $riddle = selectWord();
-print "right = ";
-print isset($_SESSION["right"]) ? $_SESSION["right"] . "<br />" : 0 . "<br />";
-print "wrong = ";
-print isset($_SESSION["wrong"]) ? $_SESSION["wrong"] : 0;
 
 function selectWord()
 {
@@ -58,6 +56,7 @@ function selectWord()
     $sth->execute();
     $randomWord = $sth->fetch();
     if ($randomWord == "") {
+        $riddle[0] = "<h3>Well done!</h3>";
         header('Location: /settings.php', true, 303);
         exit;
     }
@@ -80,6 +79,18 @@ function selectWord()
 <div class="row">
     <div class="col-md-4"></div>
     <div class="col-md-4">
+        <div class="row">
+            <div class="col-md-4">
+                <?= "right = " . $_SESSION["right"] ?>
+            </div>
+            <div class="col-md-4">
+                <?= "wrong = " . $_SESSION["wrong"] ?>
+            </div>
+            <div class="col-md-4">
+                <?= "total = " . $_SESSION["total"] ?>
+            </div>
+        </div>
+        <br/>
 
         <form class="form-group" name="play" method="GET" action="trainer.php">
             <div class="form-group">

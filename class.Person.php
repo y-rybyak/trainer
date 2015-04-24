@@ -1,31 +1,40 @@
 <?php
-class Person {
+
+class Person
+{
     private $_name;
     private $_md5Password;
     private $_id;
 
-    public function setName($name) {
+    public function setName($name)
+    {
         $this->_name = $name;
     }
 
-    public function setPassword($md5Password) {
+    public function setPassword($md5Password)
+    {
         $this->_md5Password = $md5Password;
     }
 
-    public function setID($id) {
+    public function setID($id)
+    {
         $this->_id = $id;
     }
 
-    public function getName() {
+    public function getName()
+    {
         return $this->_name;
     }
 
-    public function getPassword() {
+    public function getPassword()
+    {
         return $this->_md5Password;
     }
 
-    public function getID() {
+    public function getID()
+    {
         return $this->_id;
     }
 }
+
 ?>
